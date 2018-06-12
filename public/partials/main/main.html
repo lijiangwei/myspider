@@ -1,0 +1,46 @@
+<div  ng-controller="MainCtrl">
+	<div class="page-header">
+		<h1>cnBeta新闻列表</h1>
+	</div>
+	<div class="col-md-10">
+		<dl ng-repeat="item in newsList | orderBy:'id'">
+			<dt>
+				<a>{{item.title}}</a>
+				<p>
+					<span>{{item.author}} 发布于<em>{{item.publishTime}}</em> |</span>
+					<span><em>{{item.readTimes}}次阅读</em> |</span>
+					<span><em>{{item.remindTimes}}次推荐</em></span>
+				</p>
+			</dt>
+			<dd>
+				<div class="fr">
+					<a><img ng-src="{{item.imgSrc}}" /></a>
+				</div>
+				<div class="newsinfo">
+					<p>
+						{{item.content}}
+					</p>
+				</div>
+				<div class="clearfix"></div>
+			</dd>
+			<dd>
+				<div class="tools">
+					<a target="_blank" ng-href="http://www.cnbeta.com{{item.src}}">详细内容</a>
+					<span> | 已有<em>{{item.reminds}}个意见</em></span>
+					<span> | <em>{{item.scores}}次打分</em></span>
+					<span> | 事件分: <em>{{item.eventScore}}分</em></span>
+					<span> | 质量分: <em>{{item.zlScore}}分</em></span>
+				</div>
+			</dd>
+		</dl>
+		<ul class="pagination">
+			<li><a ng-click="changePage(-1)">&laquo;</a></li>
+			<li ng-repeat="item in pageNumber" ng-class="{'active': item==currentPage}">
+				<a ng-click="queryList(item)" ng-class="{'hidden':$index > rightNum-1
+					|| $index < leftNum-1}">{{item}}</a>
+			</li>
+		  	<li><a ng-click="changePage(1)">&raquo;</a></li>
+		</ul>
+	</div>
+
+</div>
